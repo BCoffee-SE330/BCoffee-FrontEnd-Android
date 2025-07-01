@@ -16,4 +16,8 @@ public class BranchUseCase {
     public BasePagingResponse<List<BranchResponse>> getAllBranches(GetAllBranchRequest request) throws Exception {
         return branchRepository.getAllBranches(request);
     }
+
+    public BranchResponse getBranchById(String id) throws Exception {
+        return branchRepository.getBranchById(id).getData();
+    }
 }

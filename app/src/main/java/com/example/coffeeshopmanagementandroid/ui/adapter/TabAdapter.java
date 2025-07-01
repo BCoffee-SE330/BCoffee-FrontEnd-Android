@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.coffeeshopmanagementandroid.ui.fragment.main.FavoritesFragment;
+import com.example.coffeeshopmanagementandroid.ui.fragment.main.HomeBranchFragment;
 import com.example.coffeeshopmanagementandroid.ui.fragment.main.HomeFragment;
 import com.example.coffeeshopmanagementandroid.ui.fragment.main.OrdersFragment;
 import com.example.coffeeshopmanagementandroid.ui.fragment.main.OtherFragment;
@@ -19,10 +20,8 @@ public class TabAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position) {
-            case 0:
-                return new HomeFragment();
             case 1:
-//                return new HomeBranchFragment();
+              return new HomeBranchFragment();
             case 2:
                 return new OrdersFragment();
             case 3:
@@ -36,6 +35,6 @@ public class TabAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 5;
     }
 }

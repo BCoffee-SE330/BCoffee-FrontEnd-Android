@@ -6,6 +6,11 @@
         android:title="Trang chủ" />
 
     <item
+        android:id="@+id/home_branch_fragment"
+        android:icon="@drawable/branch_icon"
+        android:title="Chi nhánh" />
+
+    <item
         android:id="@+id/orderFragment"
         android:icon="@drawable/orders_icon"
         android:title="Đặt hàng" />

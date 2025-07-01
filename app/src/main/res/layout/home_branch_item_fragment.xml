@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/homeBranchItemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="16dp"
+    android:background="@drawable/ripple_address_background"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ImageView
+        android:id="@+id/iconBranch"
+        android:layout_width="32dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/kopi_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/branchInfoLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/iconBranch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp">
+
+        <TextView
+            android:id="@+id/tvBranchName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Branch Name"
+            android:textColor="@color/secondary_900"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/tvBranchAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Branch Address, District, City"
+            android:textColor="@color/secondary_400"
+            android:textSize="14sp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/tvBranchPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone: +84 123 456 789"
+            android:textColor="@color/secondary_600"
+            android:textSize="14sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/tvBranchEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email: branch@example.com"
+            android:textColor="@color/secondary_600"
+            android:textSize="14sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

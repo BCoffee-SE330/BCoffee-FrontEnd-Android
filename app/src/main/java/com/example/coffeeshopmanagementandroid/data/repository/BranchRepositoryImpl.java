@@ -2,6 +2,7 @@ package com.example.coffeeshopmanagementandroid.data.repository;
 
 import com.example.coffeeshopmanagementandroid.data.api.BranchService;
 import com.example.coffeeshopmanagementandroid.data.dto.BasePagingResponse;
+import com.example.coffeeshopmanagementandroid.data.dto.BaseResponse;
 import com.example.coffeeshopmanagementandroid.data.dto.branch.request.GetAllBranchRequest;
 import com.example.coffeeshopmanagementandroid.data.dto.branch.response.BranchResponse;
 import com.example.coffeeshopmanagementandroid.domain.repository.BranchRepository;
@@ -22,6 +23,15 @@ public class BranchRepositoryImpl implements BranchRepository {
             return branchService.getAllBranches(request.getPage(), request.getLimit(), request.getSortType().toString(), request.getSortBy().toString()).execute().body();
         } catch (Exception e) {
             throw new Exception("Failed to fetch branches", e);
+        }
+    }
+
+    @Override
+    public BaseResponse<BranchResponse> getBranchById(String id) throws Exception {
+        try {
+            return branchService.getBranchById(id).execute().body();
+        } catch (Exception e) {
+            throw new Exception("Failed to fetch branch by ID: " + id, e);
         }
     }
 }

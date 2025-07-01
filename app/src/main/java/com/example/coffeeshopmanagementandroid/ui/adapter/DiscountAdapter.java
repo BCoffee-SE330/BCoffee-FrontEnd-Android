@@ -80,7 +80,7 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.Discou
         }
 
         public void bind(DiscountModel discount, int position) {
-            ivDiscountImage.setImageResource(R.drawable.discount_icon); // Thay bằng hình ảnh thực tế nếu cần
+            ivDiscountImage.setImageResource(R.drawable.discount_icon);
             tvDiscountName.setText(discount.getDiscountName());
 
             String condition = "Đơn tối thiểu: " + CurrencyFormat.formatVND(discount.getDiscountMinOrderValue());

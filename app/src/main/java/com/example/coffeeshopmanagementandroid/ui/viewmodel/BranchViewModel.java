@@ -22,6 +22,8 @@ public class BranchViewModel extends ViewModel {
 
     private MutableLiveData<List<BranchModel>> branchModelsLiveData = new MutableLiveData<>();
 
+    private MutableLiveData<BranchModel> branchModelLiveData = new MutableLiveData<>();
+
     @Inject
     public BranchViewModel(BranchUseCase branchUseCase) {
         this.branchUseCase = branchUseCase;
@@ -31,8 +33,13 @@ public class BranchViewModel extends ViewModel {
         return branchModelsLiveData;
     }
 
-    public void setBranchModelsLiveData(MutableLiveData<List<BranchModel>> branchModelsLiveData) {
+    public MutableLiveData<BranchModel> getBranchModelLiveData() {
+        return branchModelLiveData;
+    }
+
+    public void setBranchModelsLiveData(MutableLiveData<List<BranchModel>> branchModelsLiveData, MutableLiveData<BranchModel> branchModelLiveData) {
         this.branchModelsLiveData = branchModelsLiveData;
+        this.branchModelLiveData = branchModelLiveData;
     }
 
     public void fetchBranches(int page, int limit, SortType sortType, OrderSortBy sortBy) {
@@ -42,6 +49,19 @@ public class BranchViewModel extends ViewModel {
                 var response = branchUseCase.getAllBranches(request);
                 var branchModels = BranchMapper.mapToBranchModels(response.getData());
                 branchModelsLiveData.postValue(branchModels);
+            } catch (Exception e) {
+                e.printStackTrace();
+                branchModelsLiveData.postValue(null);
+            }
+        }).start();
+    }
+
+    public void fetchBranchById(String id) {
+        new Thread(() -> {
+            try {
+                var branchResponse = branchUseCase.getBranchById(id);
+                var branchModel = BranchMapper.mapToBranchModel(branchResponse);
+                branchModelLiveData.postValue(branchModel);
             } catch (Exception e) {
                 e.printStackTrace();
                 branchModelsLiveData.postValue(null);

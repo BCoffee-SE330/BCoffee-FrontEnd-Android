@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/branch_detail_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_400"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/backButtonBranchDetail"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:contentDescription="Back button"
+            android:src="@drawable/back_icon" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            style="@style/text_lg_2_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chi tiết chi nhánh"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/ivBranchIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/kopi_icon"
+            android:contentDescription="Branch icon" />
+
+    </LinearLayout>
+
+    <!-- Body -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="16dp">
+
+            <!-- Branch Name -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên chi nhánh"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvBranchName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-"
+                style="@style/text_sm_regular" />
+
+            <!-- Branch Address -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Địa chỉ"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvBranchAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-"
+                style="@style/text_sm_regular" />
+
+            <!-- Branch Phone -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Số điện thoại"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvBranchPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-"
+                style="@style/text_sm_regular" />
+
+            <!-- Branch Email -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Email"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvBranchEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-"
+                style="@style/text_sm_regular" />
+
+            <!-- Created At -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Ngày khai trương"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvCreatedAt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-"
+                style="@style/text_sm_regular" />
+
+            <!-- Manager Name -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Tên quản lý"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvManagerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-"
+                style="@style/text_sm_regular" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

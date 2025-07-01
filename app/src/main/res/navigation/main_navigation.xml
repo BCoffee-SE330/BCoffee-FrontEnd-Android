@@ -29,6 +29,29 @@
     </fragment>
 
     <fragment
+        android:id="@+id/home_branch_fragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.main.HomeBranchFragment"
+        android:label="fragment_home_branch"
+        tools:layout="@layout/home_branch_fragment">
+        <action
+            android:id="@+id/action_home_branch_fragment_to_branch_detail_fragment"
+            app:destination="@id/branch_detail_fragment"
+            app:popUpTo="@id/home_branch_fragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/branch_detail_fragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.branch.BranchDetailFragment"
+        android:label="fragment_branch_detail"
+        tools:layout="@layout/branch_detail_fragment">
+        <argument
+            android:name="branchId"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
         android:id="@+id/detailNotificationFragment"
         android:name="com.example.coffeeshopmanagementandroid.ui.fragment.notification.DetailNotificationFragment"
         android:label="fragment_detail_notification"
