@@ -22,10 +22,12 @@ public class TabAdapter extends FragmentStateAdapter {
             case 0:
                 return new HomeFragment();
             case 1:
-                return new OrdersFragment();
+//                return new HomeBranchFragment();
             case 2:
-                return new FavoritesFragment();
+                return new OrdersFragment();
             case 3:
+                return new FavoritesFragment();
+            case 4:
                 return new OtherFragment();
             default:
                 return new HomeFragment();
