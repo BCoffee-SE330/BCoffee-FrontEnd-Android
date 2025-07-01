@@ -1,0 +1,26 @@
+package com.example.coffeeshopmanagementandroid.utils.enums.sortBy;
+
+import androidx.annotation.NonNull;
+
+public enum ProductSortBy {
+    NAME("productName"),
+    PRICE("productPrice"),
+    RATING("productRatingsAverage"),
+    CREATED_AT("createdAt");
+
+    private final String sortByField;
+
+    ProductSortBy(String sortByField) {
+        this.sortByField = sortByField;
+    }
+
+    public String getSortByField() {
+        return sortByField;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return sortByField;
+    }
+}

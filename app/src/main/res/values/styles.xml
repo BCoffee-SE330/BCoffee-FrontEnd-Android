@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="text_xs_regular">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+    <style name="text_sm_regular">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+    <style name="text_base_regular">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+    <style name="text_lg_regular">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+    <style name="text_lg_2_regular">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+    <style name="text_xl_regular">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+    <style name="text_xl_2_regular">
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+    <style name="text_2xl_regular">
+        <item name="android:textSize">36sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+    <style name="text_3xl_regular">
+        <item name="android:textSize">40sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+    <style name="text_4xl_regular">
+        <item name="android:textSize">72sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="text_xs_semibold">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+    </style>
+    <style name="text_sm_semibold">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+    </style>
+    <style name="text_base_semibold">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+    </style>
+    <style name="text_lg_semibold">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+    </style>
+    <style name="text_lg_2_semibold">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+    </style>
+    <style name="text_xl_semibold">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+    </style>
+    <style name="text_xl_2_semibold">
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+    </style>
+    <style name="text_2xl_semibold">
+        <item name="android:textSize">36sp</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+    </style>
+    <style name="text_3xl_semibold">
+        <item name="android:textSize">40sp</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+    </style>
+    <style name="text_4xl_semibold">
+        <item name="android:textSize">72sp</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+    </style>
+    <style name="text_bracode_regular">
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">@font/bracode_39_regular</item>
+    </style>
+</resources>

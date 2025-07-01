@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/other_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.main.OtherFragment">
+
+    <!-- Header -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_400"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/avatarCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/igAvatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/bg_product_image"
+                android:contentDescription="@string/user_avatar"
+                android:scaleType="centerCrop"
+                android:src="@drawable/demo_image" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tvUsername"
+            style="@style/text_lg_2_semibold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/primary_0"
+            app:layout_constraintBottom_toTopOf="@id/tvRank"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/avatarCard"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvRank"
+            style="@style/text_base_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_stroke"
+            android:backgroundTint="@color/bg_content"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            android:text="Khách hàng"
+            android:textColor="@color/secondary_400"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvUsername"
+            app:layout_constraintTop_toBottomOf="@id/tvUsername" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--    body    -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bodyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/vertical_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout">
+
+        <TextView
+            android:id="@+id/accountLabel"
+            style="@style/text_base_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/vertical_spacing"
+            android:padding="@dimen/vertical_spacing"
+            android:text="@string/account"
+            android:textColor="@color/secondary_900"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.coffeeshopmanagementandroid.ui.component.OtherButton
+            android:id="@+id/cBtnProfileUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
+            app:buttonText="Hồ sơ"
+            app:layout_constraintStart_toEndOf="@+id/bodyLayout"
+            app:layout_constraintStart_toStartOf="@+id/bodyLayout"
+            app:layout_constraintTop_toBottomOf="@+id/accountLabel"
+            app:rightIcon="@drawable/arrow_right_thin_icon" />
+
+        <com.example.coffeeshopmanagementandroid.ui.component.OtherButton
+            android:id="@+id/cBtnAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
+            app:buttonText="Địa chỉ"
+            app:layout_constraintStart_toEndOf="@+id/bodyLayout"
+            app:layout_constraintStart_toStartOf="@+id/bodyLayout"
+            app:layout_constraintTop_toBottomOf="@+id/cBtnProfileUser"
+            app:rightIcon="@drawable/arrow_right_thin_icon" />
+
+        <com.example.coffeeshopmanagementandroid.ui.component.OtherButton
+            android:id="@+id/cBtnSetting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
+            app:buttonText="Cài đặt"
+            app:layout_constraintStart_toEndOf="@+id/bodyLayout"
+            app:layout_constraintStart_toStartOf="@+id/bodyLayout"
+            app:layout_constraintTop_toBottomOf="@+id/cBtnAddress"
+            app:rightIcon="@drawable/arrow_right_thin_icon" />
+
+        <TextView
+            android:id="@+id/interactionLabel"
+            style="@style/text_base_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_spacing"
+            android:padding="@dimen/vertical_spacing"
+            android:text="@string/Interaction"
+            android:textColor="@color/secondary_900"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cBtnSetting" />
+
+        <com.example.coffeeshopmanagementandroid.ui.component.OtherButton
+            android:id="@+id/cBtnNotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
+            app:buttonText="Thông báo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/interactionLabel"
+            app:rightIcon="@drawable/arrow_right_thin_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--    logout button   -->
+    <Button
+        android:id="@+id/btnLogout"
+        style="@style/text_base_semibold"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="@dimen/vertical_spacing"
+        android:layout_marginVertical="72dp"
+        android:text="@string/logout"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/primary_500"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+         />
+</androidx.constraintlayout.widget.ConstraintLayout>

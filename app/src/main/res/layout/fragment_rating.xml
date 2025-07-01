@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rating_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <!-- Header Layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingHorizontal="@dimen/vertical_spacing"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/profileLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/review"
+            style="@style/text_lg_semibold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/back_button" />
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/close_icon"
+            android:contentDescription="@string/back_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Bottom border -->
+    <View
+        android:id="@+id/bottom_border"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/secondary_300"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout" />
+
+    <!-- Body Container -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bodyContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/bottom_border"
+        app:layout_constraintBottom_toTopOf="@id/btnSubmitRating"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.5">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvRatingTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_spacing"
+            android:text="@string/delivery_successfully"
+            android:gravity="center"
+            style="@style/text_lg_semibold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvRequireLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_spacing"
+            android:text="@string/rating_label"
+            android:gravity="center"
+            style="@style/text_base_regular"
+            app:layout_constraintTop_toBottomOf="@id/tvRatingTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Rating Bar -->
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:numStars="5"
+            android:stepSize="1.0"
+            app:layout_constraintTop_toBottomOf="@id/tvRequireLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Review EditText -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/secondary_100"
+            app:boxStrokeWidth="1dp"
+            app:boxCornerRadiusTopStart="@dimen/vertical_spacing"
+            app:boxCornerRadiusTopEnd="@dimen/vertical_spacing"
+            app:boxCornerRadiusBottomStart="@dimen/vertical_spacing"
+            app:boxCornerRadiusBottomEnd="@dimen/vertical_spacing"
+            android:paddingHorizontal="@dimen/vertical_spacing"
+            app:boxBackgroundMode="outline"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/ratingBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:hint="@string/need_improve"
+                style="@style/text_base_regular"
+                android:minHeight="120dp"
+                android:gravity="top|start"
+                android:padding="12dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Submit Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSubmitRating"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="@dimen/vertical_spacing"
+        android:text="@string/send_review"
+        android:textAllCaps="false"
+        app:cornerRadius="@dimen/vertical_spacing"
+        app:backgroundTint="@color/primary_500"
+        style="@style/text_base_semibold"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

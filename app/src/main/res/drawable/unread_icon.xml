@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="11dp"
+    android:height="13dp"
+    android:viewportWidth="11"
+    android:viewportHeight="13">
+
+    <!-- Simulated shadow (dx=1, dy=3, blur=1, color=black 5%) -->
+    <path
+        android:pathData="M8.5,10.5a3.5,3.5 0 1,0 -7,0a3.5,3.5 0 1,0 7,0z"
+        android:fillColor="#0D000000"/>
+
+    <!-- Main circle -->
+    <path
+        android:pathData="M8,7.5a3.5,3.5 0 1,0 -7,0a3.5,3.5 0 1,0 7,0z"
+        android:fillColor="#FFC73A"/>
+</vector>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "936266773234",
+    "project_id": "bcoffee-backend-pushnoti",
+    "storage_bucket": "bcoffee-backend-pushnoti.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936266773234:android:abf2b4a87db7c6673f966b",
+        "android_client_info": {
+          "package_name": "com.example.coffeeshopmanagementandroid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-1mcZc5cjCHN8ZhUJq9sBLhqQvcFLgwc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936266773234:android:48429f2a64dccb443f966b",
+        "android_client_info": {
+          "package_name": "com.example.testapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-1mcZc5cjCHN8ZhUJq9sBLhqQvcFLgwc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

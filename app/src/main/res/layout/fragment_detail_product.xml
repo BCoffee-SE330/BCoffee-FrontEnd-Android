@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/detail_product_fragment"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.product.DetailProductFragment">
+    <!--header-->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_400"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/backButtonDetailProduct"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:contentDescription="Back button"
+            android:src="@drawable/back_icon" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            style="@style/text_lg_2_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chi tiết sản phẩm"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/favoriteButtonDetailProduct"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:contentDescription="Favorite button"
+            android:src="@drawable/unfavorites_icon" />
+
+    </LinearLayout>
+    <!--body-->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="16dp">
+
+            <ImageView
+                android:id="@+id/productImage"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/bg_product_image"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/demo_image" />
+
+            <TextView
+                android:id="@+id/categoryTextView"
+                style="@style/text_bracode_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Capuchino" />
+
+            <TextView
+                android:id="@+id/productNameTextView"
+                style="@style/text_lg_2_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chiaro" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="1dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/starImageView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="5dp"
+                    android:contentDescription="Star"
+                    android:src="@drawable/star_icon" />
+
+                <TextView
+                    android:id="@+id/ratingTextView"
+                    style="@style/text_lg_2_semibold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="4.8" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/coffeeImageView"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_some_elements"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/coffee_icon" />
+
+                <ImageView
+                    android:id="@+id/milkImageView"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/bg_some_elements"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/milk_icon" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="15dp"
+                android:background="#9B9B9B" />
+
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/description"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:text="A cappuccino is an approximately 150 ml (5 oz) beverage, with 25 ml of espresso coffee and 85 ml of fresh milk the fo espresso coffee and 85 ml of fresh milk the fo"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/variantProductRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!--footer-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_top"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="16dp">
+
+        <!-- Price Section -->
+        <LinearLayout
+            android:id="@+id/priceSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price"
+                android:textColor="#989898" />
+
+            <TextView
+                style="@style/text_base_semibold"
+                android:id="@+id/priceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="200.000VND"
+                android:textColor="@color/primary_400" />
+        </LinearLayout>
+
+        <!-- ImageButton -->
+        <ImageButton
+            android:id="@+id/addToCardButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Add to card"
+            android:scaleType="center"
+            android:src="@drawable/cart_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/buyButton"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@id/priceSection"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Button -->
+        <Button
+            android:id="@+id/buyButton"
+            style="@style/text_base_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="120dp"
+            android:text="@string/buy_now"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/primary_500"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

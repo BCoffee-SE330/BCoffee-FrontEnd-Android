@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/branchItemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="8dp"
+    android:background="@drawable/ripple_address_background"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ImageView
+        android:id="@+id/iconBranch"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/kopi_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/branchInfoLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/iconBranch"
+        app:layout_constraintEnd_toStartOf="@id/rbBranch"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp">
+
+        <TextView
+            android:id="@+id/tvBranchName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Branch Name"
+            android:textColor="@color/secondary_900"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/tvBranchAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Branch Address, District, City"
+            android:textColor="@color/secondary_400"
+            android:textSize="14sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+    </LinearLayout>
+
+    <RadioButton
+        android:id="@+id/rbBranch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

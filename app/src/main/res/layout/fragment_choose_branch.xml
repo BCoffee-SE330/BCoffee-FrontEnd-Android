@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.branch.BranchFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_400"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/backButtonToConfirmOrder"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:contentDescription="@string/back_button"
+            android:src="@drawable/back_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/text_lg_2_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/branchList"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bodyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/vertical_spacing">
+
+            <TextView
+                android:id="@+id/tvChooseBranchLabel"
+                style="@style/text_base_semibold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chọn chi nhánh đặt hàng"
+                app:layout_constraintStart_toStartOf="@id/bodyLayout"
+                app:layout_constraintTop_toTopOf="@id/bodyLayout" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/branchRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:minHeight="100dp"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                app:layout_constraintStart_toStartOf="@id/bodyLayout"
+                app:layout_constraintTop_toBottomOf="@+id/tvChooseBranchLabel" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/applyButtonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_top"
+        android:paddingStart="@dimen/double_vertical_spacing"
+        android:paddingTop="@dimen/vertical_spacing"
+        android:paddingEnd="@dimen/double_vertical_spacing"
+        android:paddingBottom="@dimen/vertical_spacing"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/applyButton"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="120dp"
+            android:paddingStart="@dimen/vertical_spacing"
+            android:paddingTop="@dimen/vertical_spacing"
+            android:paddingEnd="@dimen/vertical_spacing"
+            android:paddingBottom="@dimen/vertical_spacing"
+            android:text="@string/apply"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/primary_500"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

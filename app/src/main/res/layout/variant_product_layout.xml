@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/variantProductChipContainer"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/variantProductTextView"
+        style="@style/text_base_semibold"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="@string/size"
+        android:background="@drawable/bg_variant_product_chip" />
+</LinearLayout>

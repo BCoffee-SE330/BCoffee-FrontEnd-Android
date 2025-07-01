@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/setting_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.other.setting.SettingFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.example.coffeeshopmanagementandroid.ui.component.BackButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/settingLabel"
+            style="@style/text_base_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/vertical_spacing"
+            android:text="@string/setting"
+            app:layout_constraintBottom_toBottomOf="@id/headerLayout"
+            app:layout_constraintStart_toEndOf="@+id/back_button"
+            app:layout_constraintTop_toTopOf="@id/headerLayout" />
+
+        <View
+            android:id="@+id/bottom_border"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="@color/secondary_400"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bodyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/securityLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/vertical_spacing"
+            app:layout_constraintEnd_toEndOf="@id/bodyLayout"
+            app:layout_constraintStart_toStartOf="@id/bodyLayout"
+            app:layout_constraintTop_toTopOf="@id/bodyLayout">
+
+            <TextView
+                android:id="@+id/securityLabel"
+                style="@style/text_xs_semibold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/security"
+                android:textColor="@color/secondary_900"
+                app:layout_constraintStart_toStartOf="@id/securityLayout"
+                app:layout_constraintTop_toTopOf="@id/securityLayout" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnChangePassword"
+                style="@style/text_sm_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vertical_spacing"
+                android:gravity="start|center_vertical"
+                android:paddingStart="@dimen/vertical_spacing"
+                android:paddingEnd="@dimen/vertical_spacing"
+                android:text="@string/change_password"
+                android:textColor="@color/secondary_900"
+                app:backgroundTint="@android:color/transparent"
+                app:cornerRadius="5dp"
+                app:icon="@drawable/lock_icon"
+                app:iconGravity="start"
+                app:iconPadding="@dimen/vertical_spacing"
+                app:iconTint="@color/secondary_900"
+                app:layout_constraintStart_toStartOf="@id/securityLayout"
+                app:layout_constraintTop_toBottomOf="@id/securityLabel"
+                app:strokeColor="@color/secondary_300"
+                app:strokeWidth="1dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/settingAccountLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/vertical_spacing"
+            app:layout_constraintEnd_toEndOf="@id/bodyLayout"
+            app:layout_constraintStart_toStartOf="@id/bodyLayout"
+            app:layout_constraintTop_toBottomOf="@id/securityLayout">
+
+            <TextView
+                android:id="@+id/settingAccountLabel"
+                style="@style/text_xs_semibold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_account"
+                android:textColor="@color/secondary_900"
+                app:layout_constraintStart_toStartOf="@id/settingAccountLayout"
+                app:layout_constraintTop_toTopOf="@id/settingAccountLayout" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRemoveAccount"
+                style="@style/text_sm_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vertical_spacing"
+                android:gravity="start|center_vertical"
+                android:paddingStart="@dimen/vertical_spacing"
+                android:paddingEnd="@dimen/vertical_spacing"
+                android:text="@string/remove_account"
+                android:textColor="@color/error_600"
+                app:backgroundTint="@android:color/transparent"
+                app:cornerRadius="5dp"
+                app:icon="@drawable/remove_user_icon"
+                app:iconGravity="start"
+                app:iconPadding="@dimen/vertical_spacing"
+                app:iconTint="@color/error_600"
+                app:layout_constraintStart_toStartOf="@id/settingAccountLayout"
+                app:layout_constraintTop_toBottomOf="@id/settingAccountLabel"
+                app:strokeColor="@color/error_600"
+                app:strokeWidth="1dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

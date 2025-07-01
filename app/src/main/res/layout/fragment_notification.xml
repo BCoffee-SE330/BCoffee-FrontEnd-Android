@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notification_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.notification.NotificationFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.example.coffeeshopmanagementandroid.ui.component.BackButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/notificationLabel"
+            style="@style/text_base_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/vertical_spacing"
+            android:text="@string/notification"
+            app:layout_constraintBottom_toBottomOf="@id/headerLayout"
+            app:layout_constraintStart_toEndOf="@+id/back_button"
+            app:layout_constraintTop_toTopOf="@id/headerLayout" />
+
+        <View
+            android:id="@+id/bottom_border"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="@color/secondary_400"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bodyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/vertical_spacing"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout">
+
+        <TextView
+            android:id="@+id/allNotificationsLabel"
+            style="@style/text_base_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all_notifications"
+            app:layout_constraintStart_toStartOf="@+id/bodyLayout"
+            app:layout_constraintTop_toTopOf="@+id/bodyLayout" />
+
+        <ScrollView
+            android:id="@+id/scrollViewRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginTop="@dimen/vertical_spacing"
+            app:layout_constraintStart_toStartOf="@id/bodyLayout"
+            app:layout_constraintTop_toBottomOf="@+id/allNotificationsLabel">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notificationRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_address_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.other.address.AddAddressFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.example.coffeeshopmanagementandroid.ui.component.BackButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/addAddressLabel"
+            style="@style/text_base_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/vertical_spacing"
+            android:text="@string/add_address"
+            app:layout_constraintBottom_toBottomOf="@id/headerLayout"
+            app:layout_constraintStart_toEndOf="@+id/back_button"
+            app:layout_constraintTop_toTopOf="@id/headerLayout" />
+
+        <View
+            android:id="@+id/bottom_border"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="@color/secondary_400"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bodyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F8F7FA"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout">
+
+        <TextView
+            android:id="@+id/cityLabel"
+            style="@style/text_sm_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/vertical_spacing"
+            android:layout_marginTop="@dimen/vertical_spacing"
+            android:contentDescription="@string/notice"
+            android:drawablePadding="5dp"
+            android:text="@string/city"
+            app:drawableEndCompat="@drawable/notice"
+            app:layout_constraintStart_toStartOf="@id/bodyLayout"
+            app:layout_constraintTop_toTopOf="@id/bodyLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cityInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:boxStrokeColor="@color/secondary_300"
+            app:hintEnabled="false"
+            app:layout_constraintStart_toStartOf="@id/bodyLayout"
+            app:layout_constraintTop_toBottomOf="@+id/cityLabel">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:hint="@string/select_city"
+                android:inputType="none"
+                android:textColor="@color/secondary_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/districtLabel"
+            style="@style/text_sm_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/vertical_spacing"
+            android:layout_marginTop="@dimen/vertical_spacing"
+            android:contentDescription="@string/notice"
+            android:drawablePadding="5dp"
+            android:text="@string/district"
+            app:drawableEndCompat="@drawable/notice"
+            app:layout_constraintStart_toStartOf="@id/bodyLayout"
+            app:layout_constraintTop_toBottomOf="@id/cityInputLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/districtInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:boxStrokeColor="@color/secondary_300"
+            app:hintEnabled="false"
+            app:layout_constraintStart_toStartOf="@id/bodyLayout"
+            app:layout_constraintTop_toBottomOf="@+id/districtLabel">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteDistrict"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:hint="@string/select_district"
+                android:inputType="none"
+                android:textColor="@color/secondary_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/lineLabel"
+            style="@style/text_sm_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/vertical_spacing"
+            android:layout_marginTop="@dimen/vertical_spacing"
+            android:contentDescription="@string/notice"
+            android:drawablePadding="5dp"
+            android:text="@string/line"
+            app:drawableEndCompat="@drawable/notice"
+            app:layout_constraintStart_toStartOf="@id/bodyLayout"
+            app:layout_constraintTop_toBottomOf="@id/districtInputLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lineInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:boxStrokeColor="@color/secondary_300"
+            app:hintEnabled="false"
+            app:layout_constraintStart_toStartOf="@id/bodyLayout"
+            app:layout_constraintTop_toBottomOf="@+id/lineLabel">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/detailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/select_line"
+                android:imeOptions="actionDone"
+                android:inputType="textPostalAddress"
+                android:maxLines="3"
+                android:textColor="@color/secondary_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/settingLabel"
+            style="@style/text_sm_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/vertical_spacing"
+            android:layout_marginTop="@dimen/vertical_spacing"
+            android:contentDescription="@string/notice"
+            android:drawablePadding="5dp"
+            android:text="@string/line"
+            app:drawableEndCompat="@drawable/notice"
+            app:layout_constraintStart_toStartOf="@id/bodyLayout"
+            app:layout_constraintTop_toBottomOf="@id/lineInputLayout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/defaultAddressLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/vertical_spacing"
+            android:layout_marginTop="@dimen/vertical_spacing"
+            app:layout_constraintStart_toStartOf="@id/bodyLayout"
+            app:layout_constraintTop_toBottomOf="@+id/settingLabel">
+
+            <TextView
+                android:id="@+id/tvSetDefaultLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/set_default_address"
+                android:textColor="@color/secondary_900"
+                style="@style/text_sm_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchSetDefault"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:thumbTint="@color/switch_thumb_tint"
+                app:trackTint="@color/switch_track_tint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvSetDefaultLabel"
+                app:layout_constraintBottom_toBottomOf="@id/tvSetDefaultLabel" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnComplete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/complete"
+        app:cornerRadius="10dp"
+        android:backgroundTint="@color/primary_500"
+        android:textColor="@color/bg_white"
+        android:inputType="text"
+        style="@style/text_base_semibold"
+        android:paddingVertical="@dimen/vertical_spacing"
+        android:layout_margin="@dimen/vertical_spacing"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

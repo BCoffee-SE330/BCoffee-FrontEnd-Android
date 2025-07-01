@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/detail_notification_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_400"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/backButtonDetailNotification"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:contentDescription="Nút quay lại"
+            android:src="@drawable/back_icon" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            style="@style/text_lg_2_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chi tiết thông báo"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/ivNotificationIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/notification_image"
+            android:contentDescription="@string/notification" />
+
+    </LinearLayout>
+
+    <!-- Body -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="16dp">
+
+            <!-- Loại thông báo -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Loại thông báo"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvNotificationType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <!-- Nội dung thông báo -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Nội dung"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvNotificationContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <!-- Ngày tạo -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Ngày tạo"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvCreatedAt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

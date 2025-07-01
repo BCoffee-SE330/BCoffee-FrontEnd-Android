@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Trạng thái khi nhấn -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/secondary_200" />
+        </shape>
+    </item>
+    <!-- Trạng thái mặc định -->
+    <item>
+        <layer-list>
+            <item android:left="@dimen/vertical_spacing" android:right="@dimen/vertical_spacing" android:top="10dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/secondary_200" />
+                </shape>
+            </item>
+            <item android:bottom="1dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/bg_white" />
+                </shape>
+            </item>
+
+        </layer-list>
+    </item>
+</selector>

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.main.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_noticationFragment"
+            app:destination="@id/notificationFragment"/>
+        <action
+            android:id="@+id/action_homeFragment_to_detailProductFragment"
+            app:destination="@id/detailProductFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_homeFragment_to_discountDetailFragment"
+            app:destination="@id/detail_discount_fragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailNotificationFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.notification.DetailNotificationFragment"
+        android:label="fragment_detail_notification"
+        tools:layout="@layout/fragment_detail_notification">
+        <argument
+            android:name="notificationId"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detail_discount_fragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.discount.DiscountDetailFragment"
+        android:label="fragment_detail_discount"
+        tools:layout="@layout/fragment_detail_discount">
+        <action
+            android:id="@+id/action_detail_discount_fragment_to_detailProductFragment"
+            app:destination="@id/detailProductFragment"
+            app:popUpTo="@id/detail_discount_fragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.main.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" >
+        <action
+            android:id="@+id/action_orderFragment_to_detailOrderFragment"
+            app:destination="@id/detailOrderFragment"
+            app:popUpTo="@id/orderFragment"
+            app:popUpToInclusive="false" />
+        <argument
+            android:name="orderId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.main.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" >
+
+        <action
+            android:id="@+id/action_favoritesFragment_to_detailProductFragment"
+            app:destination="@id/detailProductFragment"
+            app:popUpTo="@id/favoriteFragment"
+            app:popUpToInclusive="false" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/otherFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.main.OtherFragment"
+        android:label="fragment_others"
+        tools:layout="@layout/fragment_other">
+        <action
+            android:id="@+id/action_otherFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/otherFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_otherFragment_to_addressFragment"
+            app:destination="@id/addressFragment"
+            app:popUpTo="@id/otherFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_otherFragment_to_settingFragment"
+            app:destination="@id/settingFragment"
+            app:popUpTo="@id/otherFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_otherFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment"
+            app:popUpTo="@id/otherFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailProductFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.product.DetailProductFragment"
+        android:label="fragment_detail_product"
+        tools:layout="@layout/fragment_detail_product">
+        <argument
+            android:name="productId"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_detailProductFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_cartFragment_to_confirmOrderFragment"
+            app:destination="@id/confirmOrderFragment"
+            app:popUpTo="@id/cartFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_cartFragment_to_detailProductFragment"
+            app:destination="@id/detailProductFragment"
+            app:popUpTo="@id/cartFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chooseAddressFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.orders.ChooseAddressFragment"
+        android:label="fragment_choose_address"
+        tools:layout="@layout/fragment_choose_address">
+        <action
+            android:id="@+id/action_chooseAddressFragment_to_confirmOrderFragment"
+            app:destination="@id/confirmOrderFragment"
+            app:popUpTo="@id/chooseAddressFragment"
+            app:popUpToInclusive="false"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailOrderFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.orders.DetailOrderFragment"
+        android:label="fragment_detail_order"
+        tools:layout="@layout/fragment_detail_order" >
+        <argument
+            android:name="orderId"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.other.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.other.address.AddressFragment"
+        android:label="fragment_address"
+        tools:layout="@layout/fragment_address">
+        <action
+            android:id="@+id/action_addressFragment_to_updateAddressFragment"
+            app:destination="@id/updateAddressFragment"
+            app:popUpTo="@id/addressFragment"
+            app:popUpToInclusive="false"
+            app:launchSingleTop="true"
+            />
+        <action
+            android:id="@+id/action_addressFragment_to_addAddressFragment"
+            app:destination="@id/addAddressFragment"
+            app:popUpTo="@id/addressFragment"
+            app:popUpToInclusive="false"
+            app:launchSingleTop="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.other.setting.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_settingFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment"
+            app:popUpTo="@id/settingFragment"
+            app:popUpToInclusive="false"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.notification.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification">
+        <action
+            android:id="@+id/action_notificationFragment_to_detailNotificationFragment"
+            app:destination="@id/detailNotificationFragment"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.other.setting.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password"/>
+
+    <fragment
+        android:id="@+id/updateAddressFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.other.address.UpdateAddressFragment"
+        android:label="fragment_update_address"
+        tools:layout="@layout/fragment_update_address" />
+
+    <fragment
+        android:id="@+id/addAddressFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.other.address.AddAddressFragment"
+        android:label="fragment_add_address"
+        tools:layout="@layout/fragment_add_address" />
+
+    <fragment
+        android:id="@+id/confirmOrderFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.orders.ConfirmOrderFragment"
+        android:label="fragment_confirm_order"
+        tools:layout="@layout/fragment_confirm_order">
+        <action
+            android:id="@+id/action_confirmOrderFragment_to_discountFragment"
+            app:destination="@id/discountFragment"
+            app:popUpTo="@id/confirmOrderFragment"
+            app:popUpToInclusive="false"
+            app:launchSingleTop="true"/>
+        <action
+            android:id="@+id/action_cartFragment_to_chooseAddressFragment"
+            app:destination="@id/chooseAddressFragment"
+            app:popUpTo="@id/cartFragment"
+            app:popUpToInclusive="false"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_confirmOrderFragment_to_orderFragment"
+            app:destination="@id/orderFragment"
+            app:popUpTo="@id/confirmOrderFragment"
+            app:popUpToInclusive="false"
+            app:launchSingleTop="true"/>
+        <action
+            android:id="@+id/action_confirmOrderFragment_to_branchFragment"
+            app:destination="@id/branchFragment"
+            app:popUpTo="@id/confirmOrderFragment"
+            app:popUpToInclusive="false"
+            app:launchSingleTop="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/branchFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.branch.BranchFragment"
+        android:label="fragment_branch"
+        tools:layout="@layout/fragment_choose_branch"/>
+
+    <fragment
+        android:id="@+id/discountFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.discount.DiscountFragment"
+        android:label="fragment_discount"
+        tools:layout="@layout/fragment_discount">
+        <action
+            android:id="@+id/action_discountFragment_to_confirmOrderFragment"
+            app:destination="@id/confirmOrderFragment"
+            app:popUpTo="@id/discountFragment"
+            app:popUpToInclusive="false"
+            app:launchSingleTop="true"/>
+        <action
+            android:id="@+id/action_discountFragment_to_detail_discount_fragment"
+            app:destination="@id/detail_discount_fragment"
+            app:popUpTo="@id/discountFragment"
+            app:popUpToInclusive="false"
+            app:launchSingleTop="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/ratingFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.rating.RatingFragment"
+        android:label="fragment_rating"
+        tools:layout="@layout/fragment_rating"
+        />
+</navigation>

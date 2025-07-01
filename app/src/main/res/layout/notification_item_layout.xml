@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_stroke"
+    android:padding="@dimen/vertical_spacing">
+
+    <!-- Phần 1: Hình ảnh bên trái -->
+    <ImageView
+        android:id="@+id/ivNotificationImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/notification_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Phần 2: Nội dung ở giữa -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contentContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivReadStatus"
+        app:layout_constraintStart_toEndOf="@id/ivNotificationImage"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Dòng 1: Label -->
+        <TextView
+            android:id="@+id/tvNotificationLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/notification"
+            style="@style/text_base_semibold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Dòng 2: Content (thu gọn 1 dòng) -->
+        <TextView
+            android:id="@+id/tvNotificationContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/default_content_notification"
+            style="@style/text_sm_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNotificationLabel" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Phần 3: Icon trạng thái đọc/chưa đọc -->
+    <ImageView
+        android:id="@+id/ivReadStatus"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/unread_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

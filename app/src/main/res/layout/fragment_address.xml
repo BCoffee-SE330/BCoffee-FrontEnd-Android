@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/address_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.other.address.AddressFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.example.coffeeshopmanagementandroid.ui.component.BackButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/addressLabel"
+            style="@style/text_base_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/vertical_spacing"
+            android:text="@string/address"
+            app:layout_constraintBottom_toBottomOf="@id/headerLayout"
+            app:layout_constraintStart_toEndOf="@+id/back_button"
+            app:layout_constraintTop_toTopOf="@id/headerLayout" />
+
+        <View
+            android:id="@+id/bottom_border"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="@color/secondary_400"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bodyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F8F7FA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout">
+
+        <TextView
+            android:id="@+id/tvRecentlyAddress"
+            style="@style/text_base_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/vertical_spacing"
+            android:layout_marginTop="@dimen/vertical_spacing"
+            android:text="@string/recently_address"
+            app:layout_constraintStart_toStartOf="@id/bodyLayout"
+            app:layout_constraintTop_toTopOf="@id/bodyLayout" />
+
+        <include
+            android:id="@+id/iRecentlyAddress"
+            layout="@layout/recent_address_item_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/vertical_spacing"
+            android:layout_marginTop="@dimen/vertical_spacing"
+            app:layout_constraintEnd_toEndOf="@id/bodyLayout"
+            app:layout_constraintStart_toStartOf="@id/bodyLayout"
+            app:layout_constraintTop_toBottomOf="@id/tvRecentlyAddress" />
+
+        <TextView
+            android:id="@+id/tvAddressList"
+            style="@style/text_base_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/vertical_spacing"
+            android:layout_marginTop="@dimen/vertical_spacing"
+            android:text="@string/save_address"
+            app:layout_constraintStart_toStartOf="@id/bodyLayout"
+            app:layout_constraintTop_toBottomOf="@id/iRecentlyAddress" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/addressRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_spacing"
+            android:paddingHorizontal="@dimen/vertical_spacing"
+            app:layout_constraintTop_toBottomOf="@id/tvAddressList" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddAddress"
+            style="@style/text_base_semibold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/vertical_spacing"
+            android:padding="@dimen/vertical_spacing"
+            android:text="@string/add_address_button"
+            android:textAllCaps="false"
+            android:textColor="@color/secondary_900"
+            android:background="@drawable/ripple_address_background"
+            app:backgroundTint="@null"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/plus_icon"
+            app:iconGravity="start"
+            app:iconPadding="12dp"
+            app:iconTint="@color/secondary_900"
+            android:gravity="start|center_vertical"
+            app:layout_constraintTop_toBottomOf="@id/addressRecyclerView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

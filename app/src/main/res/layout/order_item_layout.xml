@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="4dp"
+    android:background="@drawable/bg_order_item"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_base_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/ma_van_don" />
+
+            <TextView
+                android:id="@+id/orderIdTextView"
+                style="@style/text_base_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/default_code" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/text_base_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/status" />
+
+            <com.example.coffeeshopmanagementandroid.ui.component.StatusIndicator
+                android:id="@+id/statusIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_base_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/total_order" />
+
+            <TextView
+                android:id="@+id/totalOrderTextView"
+                style="@style/text_base_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/default_code" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/detailOrderImageView"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/detail_order"
+            android:src="@drawable/arrow_right_icon" />
+    </LinearLayout>
+
+</LinearLayout>

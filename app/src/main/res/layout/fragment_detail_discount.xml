@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/detail_discount_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_400"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/backButtonDetailDiscount"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:contentDescription="Back button"
+            android:src="@drawable/back_icon" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            style="@style/text_lg_2_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chi tiết ưu đãi"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/ivDiscountIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/discount_icon"
+            android:contentDescription="@string/discount" />
+
+    </LinearLayout>
+
+    <!-- Body -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="16dp">
+
+            <!-- Discount Name -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên ưu đãi"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvDiscountName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <!-- Description -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Mô tả"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvDiscountDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <!-- Type -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Loại ưu đãi"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvDiscountType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <!-- Value -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Giá trị"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvDiscountValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <!-- Code -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Mã ưu đãi"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvDiscountCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <!-- Start Date -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Ngày bắt đầu"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvDiscountStartDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <!-- End Date -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Ngày kết thúc"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvDiscountEndDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <!-- Max Users -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Số lượt sử dụng tối đa"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvDiscountMaxUses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <!-- Max Per User -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Số lượt mỗi người"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvDiscountMaxPerUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <!-- Min Order Value -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Giá trị đơn tối thiểu"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvDiscountMinOrderValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <!-- Branch Name -->
+            <TextView
+                style="@style/text_base_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Chi nhánh áp dụng"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/tvBranchName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"
+                android:text="Sản phẩm áp dụng"
+                style="@style/text_xl_semibold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/appliedProductRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>
