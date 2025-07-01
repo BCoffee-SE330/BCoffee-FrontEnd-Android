@@ -28,6 +28,7 @@ android {
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", localProperties["BASE_URL"].toString())
+        buildConfigField ("String", "BASE_URL_RAG", localProperties["RAG_URL"].toString())
     }
 
     buildTypes {

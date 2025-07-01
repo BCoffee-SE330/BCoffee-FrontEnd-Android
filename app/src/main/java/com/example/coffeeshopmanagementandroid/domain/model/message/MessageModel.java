@@ -1,10 +1,12 @@
 package com.example.coffeeshopmanagementandroid.domain.model.message;
 
 public class MessageModel {
+    private String role;
     private String content;
     private boolean isSent;
 
-    public MessageModel(String content, boolean isSent) {
+    public MessageModel(String role, String content, boolean isSent) {
+        this.role = role;
         this.content = content;
         this.isSent = isSent;
     }

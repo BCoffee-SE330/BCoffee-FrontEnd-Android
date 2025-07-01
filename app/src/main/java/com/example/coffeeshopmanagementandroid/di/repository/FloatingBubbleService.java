@@ -1,12 +1,14 @@
 package com.example.coffeeshopmanagementandroid.di.repository;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
-import android.os.Bundle;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
@@ -22,12 +24,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffeeshopmanagementandroid.R;
+import com.example.coffeeshopmanagementandroid.data.dto.rag.request.QueryRequest;
+import com.example.coffeeshopmanagementandroid.data.dto.rag.response.RagResponse;
+import com.example.coffeeshopmanagementandroid.data.mapper.RagMapper;
 import com.example.coffeeshopmanagementandroid.domain.model.message.MessageModel;
 import com.example.coffeeshopmanagementandroid.ui.adapter.MessageAdapter;
+import com.example.coffeeshopmanagementandroid.utils.RagServiceManager;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 public class FloatingBubbleService extends Service {
     private WindowManager windowManager;
@@ -45,6 +53,7 @@ public class FloatingBubbleService extends Service {
     private View closeAreaView;
     private WindowManager.LayoutParams closeAreaParams;
     private boolean isDragging = false;
+    private boolean isLoading = false;
 
     @Override
     public void onCreate() {
@@ -54,6 +63,8 @@ public class FloatingBubbleService extends Service {
         // Initialize message list for chat
         messageList = new ArrayList<>();
         messageAdapter = new MessageAdapter(messageList);
+
+        RagServiceManager.getInstance(getApplicationContext());
 
         try {
             createBubbleView();
@@ -65,6 +76,7 @@ public class FloatingBubbleService extends Service {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void createBubbleView() {
         try {
             bubbleView = LayoutInflater.from(this).inflate(R.layout.bubble_layout, null);
@@ -152,12 +164,14 @@ public class FloatingBubbleService extends Service {
         chatView = inflater.inflate(R.layout.activity_chat, null);
 
         // Change WRAP_CONTENT to MATCH_PARENT for height
-        chatParams = new WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
-                PixelFormat.TRANSLUCENT);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            chatParams = new WindowManager.LayoutParams(
+                    WindowManager.LayoutParams.MATCH_PARENT,
+                    WindowManager.LayoutParams.MATCH_PARENT,
+                    WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                    PixelFormat.TRANSLUCENT);
+        }
 
         // Set gravity to fill the entire screen
         chatParams.gravity = Gravity.CENTER;
@@ -178,7 +192,7 @@ public class FloatingBubbleService extends Service {
             messagesRecyclerView.setAdapter(messageAdapter);
 
             // Add welcome message
-            addMessage("Xin chào! Tôi là trợ lý ảo BCoffee. Tôi có thể giúp gì cho bạn?", false);
+            addMessage("assistant ", "Xin chào! Tôi là trợ lý ảo BCoffee. Tôi có thể giúp gì cho bạn?", false);
 
             // Set up send button
             sendButton.setOnClickListener(v -> {
@@ -199,16 +213,19 @@ public class FloatingBubbleService extends Service {
             }
     }
 
+    @SuppressLint("InflateParams")
     private void createCloseAreaView() {
         closeAreaView = LayoutInflater.from(this).inflate(R.layout.close_area_layout, null);
 
-        closeAreaParams = new WindowManager.LayoutParams(
-                WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
-                        WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                PixelFormat.TRANSLUCENT);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            closeAreaParams = new WindowManager.LayoutParams(
+                    WindowManager.LayoutParams.WRAP_CONTENT,
+                    WindowManager.LayoutParams.WRAP_CONTENT,
+                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
+                            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                    PixelFormat.TRANSLUCENT,
+                    WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
+        }
 
         closeAreaParams.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
         closeAreaParams.y = 100;  // Distance from bottom
@@ -290,34 +307,54 @@ public class FloatingBubbleService extends Service {
     }
 
     private void sendMessage(String messageText) {
-        addMessage(messageText, true);
+        addMessage("user", messageText, true);
         messageEditText.setText("");
 
-        new Handler().postDelayed(() -> {
-            String response = generateResponse(messageText);
-            addMessage(response, false);
-        }, 800);
+        // Show loading indicator
+        setLoading(true);
+
+        // Convert message history for RAG API
+        List<QueryRequest.ConversationItem> conversationItems =
+                RagMapper.mapMessageListToConversationHistory(messageList, 3);
+
+        // Use the RagServiceManager to call the API
+        RagServiceManager.getInstance().sendMessage(
+                messageText,
+                conversationItems,
+                new RagServiceManager.RagCallback() {
+                    @Override
+                    public void onSuccess(String response) {
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            addMessage("assistant", response, false);
+                            setLoading(false);
+                        });
+                    }
+
+                    @Override
+                    public void onError(String errorMessage) {
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            addMessage("assistant", "Xin lỗi, đã xảy ra lỗi: " + errorMessage, false);
+                            setLoading(false);
+                        });
+                    }
+                });
     }
 
-    private void addMessage(String message, boolean isSent) {
-        messageList.add(new MessageModel(message, isSent));
+    private void setLoading(boolean loading) {
+        isLoading = loading;
+
+        if (sendButton != null) {
+            new Handler(getMainLooper()).post(() -> {
+                sendButton.setEnabled(!loading);
+                messageEditText.setEnabled(!loading);
+            });
+        }
+    }
+
+    private void addMessage(String role, String message, boolean isSent) {
+        messageList.add(new MessageModel(role, message, isSent));
         messageAdapter.notifyItemInserted(messageList.size() - 1);
         messagesRecyclerView.smoothScrollToPosition(messageList.size() - 1);
-    }
-
-    private String generateResponse(String query) {
-        query = query.toLowerCase();
-        if (query.contains("giờ mở cửa") || query.contains("thời gian")) {
-            return "BCoffee mở cửa từ 7:00 đến 22:00 hàng ngày.";
-        } else if (query.contains("menu") || query.contains("đồ uống")) {
-            return "Menu của chúng tôi có nhiều loại cà phê, trà, nước ép và bánh ngọt. Bạn có thể xem chi tiết trong mục Sản phẩm.";
-        } else if (query.contains("khuyến mãi") || query.contains("ưu đãi")) {
-            return "Hiện tại chúng tôi có chương trình giảm 15% cho đơn hàng đầu tiên và tích điểm đổi quà hấp dẫn.";
-        } else if (query.contains("chi nhánh") || query.contains("cửa hàng")) {
-            return "BCoffee có nhiều chi nhánh trên toàn quốc. Bạn có thể xem danh sách các chi nhánh trong mục Cửa hàng.";
-        } else {
-            return "Xin lỗi, tôi chưa hiểu rõ câu hỏi của bạn. Bạn có thể hỏi về menu, khuyến mãi, giờ mở cửa hoặc chi nhánh của chúng tôi.";
-        }
     }
 
     @Override
