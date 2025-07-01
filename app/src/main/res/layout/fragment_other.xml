@@ -149,6 +149,43 @@
             app:layout_constraintTop_toBottomOf="@+id/interactionLabel"
             app:rightIcon="@drawable/arrow_right_thin_icon" />
 
+        <!-- After cBtnNotification and before logout button -->
+        <TextView
+            android:id="@+id/supportLabel"
+            style="@style/text_base_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_spacing"
+            android:padding="@dimen/vertical_spacing"
+            android:text="Hỗ trợ"
+            android:textColor="@color/secondary_900"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cBtnNotification" />
+
+        <com.example.coffeeshopmanagementandroid.ui.component.OtherButton
+            android:id="@+id/cBtnContactDev"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
+            app:buttonText="Liên lạc với đội ngũ phát triển"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/supportLabel"
+            app:rightIcon="@drawable/arrow_right_thin_icon" />
+
+        <com.example.coffeeshopmanagementandroid.ui.component.OtherButton
+            android:id="@+id/cBtnVirtualAssistant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
+            app:buttonText="Trợ lý ảo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cBtnContactDev"
+            app:rightIcon="@drawable/arrow_right_thin_icon" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!--    logout button   -->
     <Button
@@ -157,7 +194,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginHorizontal="@dimen/vertical_spacing"
-        android:layout_marginVertical="72dp"
+        android:layout_marginVertical="75dp"
         android:text="@string/logout"
         android:textColor="@color/white"
         app:backgroundTint="@color/primary_500"

@@ -92,6 +92,18 @@
     </fragment>
 
     <fragment
+        android:id="@+id/supportHumanFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.other.support.SupportHumanFragment"
+        android:label="fragment_support_human"
+        tools:layout="@layout/fragment_support_human" />
+
+    <fragment
+        android:id="@+id/supportAiFragment"
+        android:name="com.example.coffeeshopmanagementandroid.ui.fragment.other.support.SupportAiFragment"
+        android:label="fragment_support_ai"
+        tools:layout="@layout/fragment_support_ai" />
+
+    <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.coffeeshopmanagementandroid.ui.fragment.main.FavoritesFragment"
         android:label="fragment_favorites"
@@ -128,6 +140,17 @@
         <action
             android:id="@+id/action_otherFragment_to_notificationFragment"
             app:destination="@id/notificationFragment"
+            app:popUpTo="@id/otherFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_otherFragment_to_supportHumanFragment"
+            app:destination="@id/supportHumanFragment"
+            app:popUpTo="@id/otherFragment"
+            app:popUpToInclusive="false" />
+
+        <action
+            android:id="@+id/action_otherFragment_to_supportAiFragment"
+            app:destination="@id/supportAiFragment"
             app:popUpTo="@id/otherFragment"
             app:popUpToInclusive="false" />
     </fragment>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Header -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_400"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            style="@style/text_lg_2_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hỗ trợ"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/backButtonToConfirmOrder"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:contentDescription="@string/back_button"
+            android:src="@drawable/back_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/introTitle"
+                style="@style/text_lg_2_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Giới thiệu"
+                android:textColor="@color/secondary_900"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/introText"
+                style="@style/text_base_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Chào mừng đến với BCoffee - Hệ thống quản lý chuỗi cửa hàng cà phê hàng đầu.\n\nTrang này dành cho việc hỗ trợ kỹ thuật. Nếu bạn gặp bất kỳ vấn đề nào với ứng dụng, vui lòng liên hệ với chúng tôi theo thông tin bên dưới."
+                android:textColor="@color/secondary_700"
+                app:layout_constraintTop_toBottomOf="@id/introTitle" />
+
+            <TextView
+                android:id="@+id/contactTitle"
+                style="@style/text_lg_2_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Thông tin liên hệ"
+                android:textColor="@color/secondary_900"
+                app:layout_constraintTop_toBottomOf="@id/introText" />
+
+            <TextView
+                android:id="@+id/emailLabel"
+                style="@style/text_base_semibold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Email:"
+                android:textColor="@color/secondary_800"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/contactTitle" />
+
+            <TextView
+                android:id="@+id/emailText"
+                style="@style/text_base_regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="bcoffee.support@scammer.com"
+                android:textColor="@color/primary_500"
+                android:textIsSelectable="true"
+                app:layout_constraintBottom_toBottomOf="@id/emailLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/emailLabel"
+                app:layout_constraintTop_toTopOf="@id/emailLabel" />
+
+            <TextView
+                android:id="@+id/phoneLabel"
+                style="@style/text_base_semibold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Số điện thoại:"
+                android:textColor="@color/secondary_800"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/emailLabel" />
+
+            <TextView
+                android:id="@+id/phoneText"
+                style="@style/text_base_regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="082-9583-145"
+                android:textColor="@color/primary_500"
+                android:textIsSelectable="true"
+                app:layout_constraintBottom_toBottomOf="@id/phoneLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/phoneLabel"
+                app:layout_constraintTop_toTopOf="@id/phoneLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

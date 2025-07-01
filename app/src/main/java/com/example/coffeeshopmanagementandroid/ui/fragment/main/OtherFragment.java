@@ -37,6 +37,8 @@ public class OtherFragment extends Fragment {
     private OtherButton btnAddress;
     private OtherButton btnSetting;
     private OtherButton btnNotification;
+    private OtherButton btnSupportHuman;
+    private OtherButton btnSupportAi;
     private Button btnLogout;
     private NavController navController;
     private UserViewModel userViewModel;
@@ -68,6 +70,8 @@ public class OtherFragment extends Fragment {
         btnAddress = view.findViewById(R.id.cBtnAddress);
         btnSetting = view.findViewById(R.id.cBtnSetting);
         btnNotification = view.findViewById(R.id.cBtnNotification);
+        btnSupportHuman = view.findViewById(R.id.cBtnContactDev);
+        btnSupportAi = view.findViewById(R.id.cBtnVirtualAssistant);
 
         setupListeners();
         observeViewModel();
@@ -101,6 +105,21 @@ public class OtherFragment extends Fragment {
                         R.id.action_otherFragment_to_notificationFragment,
                         "NotificationFragment",
                         "OtherFragment"));
+
+        btnSupportHuman.setOnClickListener(v ->
+                NavigationUtils.safeNavigate(navController,
+                        R.id.otherFragment,
+                        R.id.action_otherFragment_to_supportHumanFragment,
+                        "SupportHumanFragment",
+                        "OtherFragment"));
+
+        btnSupportAi.setOnClickListener(v ->
+                NavigationUtils.safeNavigate(navController,
+                        R.id.otherFragment,
+                        R.id.action_otherFragment_to_supportAiFragment,
+                        "SupportAiFragment",
+                        "OtherFragment"));
+
         btnLogout.setOnClickListener(v -> handleLogout());
     }
 
@@ -168,5 +187,4 @@ public class OtherFragment extends Fragment {
         startActivity(intent);
         requireActivity().finish();
     }
-
 }
