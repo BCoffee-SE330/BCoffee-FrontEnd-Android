@@ -9,10 +9,12 @@ import com.example.coffeeshopmanagementandroid.data.dto.BaseResponse;
 import com.example.coffeeshopmanagementandroid.data.dto.address.response.AddressResponse;
 import com.example.coffeeshopmanagementandroid.data.dto.address.resquest.CreateAddressRequest;
 import com.example.coffeeshopmanagementandroid.data.dto.address.resquest.GetAddressRequest;
+import com.example.coffeeshopmanagementandroid.data.dto.address.resquest.UpdateAddressRequest;
 import com.example.coffeeshopmanagementandroid.data.dto.cart.response.CartDetailResponse;
 import com.example.coffeeshopmanagementandroid.domain.repository.AddressRepository;
 
 import java.util.List;
+import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -54,6 +56,37 @@ public class AddressRepositoryImpl implements AddressRepository {
         } else {
             String errorMessage = "Create address failed: " + (response.errorBody() != null ? response.errorBody().string() : "Unknown error");
             Log.e("CREATE ADDRESS", errorMessage);
+            throw new Exception(errorMessage);
+        }
+    }
+
+    @Override
+    public BaseResponse<AddressResponse> updateAddress(UpdateAddressRequest request) throws Exception {
+        Log.d("Address RepoIml", "Update Address Called");
+
+        Call<BaseResponse<AddressResponse>> call = addressService.updateAddress(request);
+        Response<BaseResponse<AddressResponse>> response = call.execute();
+
+        if (response.isSuccessful() && response.body() != null) {
+            Log.d("Update Address Response", String.valueOf(response.body().getData()));
+            return response.body();
+        } else {
+            String errorMessage = "Update address failed: " + (response.errorBody() != null ? response.errorBody().string() : "Unknown error");
+            Log.e("UPDATE ADDRESS", errorMessage);
+            throw new Exception(errorMessage);
+        }
+    }
+
+    @Override
+    public void deleteAddress(UUID id) throws Exception {
+        Log.d("Address RepoIml", "Delete Address Called");
+
+        Call<Void> call = addressService.deleteAddress(id);
+        Response<Void> response = call.execute();
+
+        if (!response.isSuccessful()) {
+            String errorMessage = "Delete address failed: " + (response.errorBody() != null ? response.errorBody().string() : "Unknown error");
+            Log.e("DELETE ADDRESS", errorMessage);
             throw new Exception(errorMessage);
         }
     }

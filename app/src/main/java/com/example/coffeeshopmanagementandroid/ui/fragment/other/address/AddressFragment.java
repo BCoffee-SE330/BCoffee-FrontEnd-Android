@@ -75,12 +75,11 @@ public class AddressFragment extends BaseOtherFragment {
             TextView tvAddress = recentlyAddress.findViewById(R.id.tvRecentlyAddress);
             ImageView iconEditAddress = recentlyAddress.findViewById(R.id.iconEditRecentlyAddress);
 
-            // Chỗ này sử dụng API lấy Address của đơn gần nhất
-            List<AddressModel> addresses = new ArrayList<>();
-            AddressModel recentAddress;
-            recentAddress = addresses.get(0);
+            // Get addresses from view model instead of creating a new list
+            List<AddressModel> addresses = confirmOrderViewModel.getAddressesLiveData().getValue();
 
-            if (recentAddress != null) {
+            if (addresses != null && !addresses.isEmpty()) {
+                AddressModel recentAddress = addresses.get(0);
                 tvAddress.setText(recentAddress.getAddressLine() + "\n" + recentAddress.getAddressDistrict() + ", " + recentAddress.getAddressCity());
                 recentlyAddress.setOnClickListener(v -> navigateToUpdateAddress(recentAddress));
             } else {
@@ -93,10 +92,11 @@ public class AddressFragment extends BaseOtherFragment {
     private void navigateToUpdateAddress(AddressModel address) {
         if (address != null) {
             Bundle args = new Bundle();
-            args.putString("addressId", address.getAddressId());
+            args.putString("addressId", address.getAddressId().toString());
             args.putString("addressLine", address.getAddressLine());
             args.putString("addressDistrict", address.getAddressDistrict());
             args.putString("addressCity", address.getAddressCity());
+            args.putBoolean("isDefault", address.getAddressIsDefault());
 
             NavigationUtils.safeNavigate(navController,
                     R.id.addressFragment,
@@ -105,7 +105,7 @@ public class AddressFragment extends BaseOtherFragment {
                     "AddressFragment",
                     args);
         } else {
-            Log.e("AddressFragment", "AddressModel is null, cannot navigate to UpdateAddressFragment from recent");
+            Log.e("AddressFragment", "Cannot navigate: address is null");
         }
     }
 

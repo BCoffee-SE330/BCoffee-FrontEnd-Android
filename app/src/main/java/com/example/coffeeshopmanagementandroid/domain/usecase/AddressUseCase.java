@@ -5,9 +5,11 @@ import com.example.coffeeshopmanagementandroid.data.dto.BaseResponse;
 import com.example.coffeeshopmanagementandroid.data.dto.address.response.AddressResponse;
 import com.example.coffeeshopmanagementandroid.data.dto.address.resquest.CreateAddressRequest;
 import com.example.coffeeshopmanagementandroid.data.dto.address.resquest.GetAddressRequest;
+import com.example.coffeeshopmanagementandroid.data.dto.address.resquest.UpdateAddressRequest;
 import com.example.coffeeshopmanagementandroid.domain.repository.AddressRepository;
 
 import java.util.List;
+import java.util.UUID;
 
 public class AddressUseCase {
     private final AddressRepository addressRepository;
@@ -30,6 +32,22 @@ public class AddressUseCase {
             return addressRepository.createAddress(addressRequest);
         } catch (Exception e) {
             throw new RuntimeException("Failed to create address", e);
+        }
+    }
+
+    public BaseResponse<AddressResponse> updateAddress(UpdateAddressRequest request) {
+        try {
+            return addressRepository.updateAddress(request);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to update address", e);
+        }
+    }
+
+    public void deleteAddress(UUID id) {
+        try {
+            addressRepository.deleteAddress(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to delete address", e);
         }
     }
 }

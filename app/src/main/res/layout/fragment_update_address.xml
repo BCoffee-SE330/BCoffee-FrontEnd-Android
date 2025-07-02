@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/vertical_spacing"
-            android:text="@string/add_address"
+            android:text="Cập nhật địa chỉ"
             app:layout_constraintBottom_toBottomOf="@id/headerLayout"
             app:layout_constraintStart_toEndOf="@+id/back_button"
             app:layout_constraintTop_toTopOf="@id/headerLayout" />
