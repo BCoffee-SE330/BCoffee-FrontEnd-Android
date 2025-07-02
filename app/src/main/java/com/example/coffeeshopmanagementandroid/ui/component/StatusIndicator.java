@@ -2,6 +2,7 @@ package com.example.coffeeshopmanagementandroid.ui.component;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,24 +32,21 @@ public class StatusIndicator extends LinearLayout {
     }
 
     public void setStatus(String status) {
+        Log.d("StatusIndicator", "setStatus: " + status);
         this.tvStatus.setText(status);
+
+        // Kiểm tra status và set màu tương ứng
         switch (status) {
+            case "ĐÃ HỦY": // Sửa từ "ĐÃ HUỶ" thành "ĐÃ HỦY"
+                this.viewIndicator.setBackgroundResource(R.drawable.bg_status_order_cancel);
+                this.tvStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.error_500));
+                break;
             case "HOÀN TẤT":
                 this.viewIndicator.setBackgroundResource(R.drawable.bg_status_order_successful);
                 this.tvStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.primary_400));
                 break;
-            case "ĐÃ HUỶ":
-                this.viewIndicator.setBackgroundResource(R.drawable.bg_status_order_cancel);
-                this.tvStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.error_500));
-                break;
             case "ĐANG XỬ LÝ":
-                this.viewIndicator.setBackgroundResource(R.drawable.bg_status_order);
-                this.tvStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.warning_500));
-                break;
             case "ĐANG CHỜ":
-                this.viewIndicator.setBackgroundResource(R.drawable.bg_status_order);
-                this.tvStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.warning_500));
-                break;
             case "ĐANG GIAO HÀNG":
                 this.viewIndicator.setBackgroundResource(R.drawable.bg_status_order);
                 this.tvStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.warning_500));
@@ -56,6 +54,7 @@ public class StatusIndicator extends LinearLayout {
             case "ĐÃ GIAO HÀNG":
                 this.viewIndicator.setBackgroundResource(R.drawable.bg_status_order_successful);
                 this.tvStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.primary_400));
+                break; // Thêm break bị thiếu
             default:
                 this.viewIndicator.setBackgroundResource(R.drawable.bg_status_order);
                 this.tvStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.warning_500));

@@ -1,5 +1,6 @@
 package com.example.coffeeshopmanagementandroid.ui.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,9 +76,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
         public void bind(OrderModel order) {
             // Bind dữ liệu vào các thành phần giao diện ở đây
+            Log.d("OrderAdapter", "bind: " + order.getOrderStatus());
             orderIdTextView.setText(order.getOrderId());
             statusIndicator.setStatus(order.getOrderStatus());
-            totalOrderTextView.setText(CurrencyFormat.formatVND(order.getOrderTotalCost()));
+            totalOrderTextView.setText(CurrencyFormat.formatVND(order.getOrderTotalCostAfterDiscount()));
         }
     }
 }

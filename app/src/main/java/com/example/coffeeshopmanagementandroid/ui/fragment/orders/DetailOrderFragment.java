@@ -53,7 +53,8 @@ public class DetailOrderFragment extends Fragment {
     private TextView tvOriginalTotal;
     private TextView tvDiscount;
     private Button cancelOrderButton;
-
+    // Thêm container để có thể ẩn/hiện cả container
+    private ViewGroup cancelOrderContainer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,8 +68,11 @@ public class DetailOrderFragment extends Fragment {
         });
 
         cancelOrderButton = view.findViewById(R.id.btnCancelOrder);
+        cancelOrderContainer = view.findViewById(R.id.cancelOrderContainer); // Thêm dòng này
+
         cancelOrderButton.setOnClickListener(v -> {
             handleCancelOrder();
+            Toast.makeText(requireContext(), "Đã hủy đơn hàng", Toast.LENGTH_SHORT).show();
         });
 
         setupRecyclerView(view);
@@ -117,9 +121,18 @@ public class DetailOrderFragment extends Fragment {
         detailOrderViewModel.getUserPhoneNumber().observe(getViewLifecycleOwner(), userPhoneNumber -> {
             customerPhoneTextView.setText(userPhoneNumber);
         });
+
+        // Cập nhật observer cho orderStatus để ẩn/hiện nút hủy đơn hàng
         detailOrderViewModel.getOrderStatus().observe(getViewLifecycleOwner(), orderStatus -> {
             statusOrderTextView.setText(orderStatus);
             statusOrderTextView.setTextColor(StatusFormat.getColor(requireContext(), orderStatus));
+
+            // Chỉ hiển thị nút hủy đơn hàng khi trạng thái là "ĐANG CHỜ"
+            if ("ĐANG CHỜ".equals(orderStatus)) {
+                cancelOrderContainer.setVisibility(View.VISIBLE);
+            } else {
+                cancelOrderContainer.setVisibility(View.GONE);
+            }
         });
 
         detailOrderViewModel.getOrderTotalCost().observe(getViewLifecycleOwner(), originalTotal -> {

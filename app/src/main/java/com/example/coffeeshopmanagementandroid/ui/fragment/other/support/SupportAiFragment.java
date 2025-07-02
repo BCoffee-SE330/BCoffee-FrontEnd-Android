@@ -20,7 +20,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.coffeeshopmanagementandroid.R;
 import com.example.coffeeshopmanagementandroid.di.repository.FloatingBubbleService;
 import com.example.coffeeshopmanagementandroid.ui.MainActivity;
-import com.example.coffeeshopmanagementandroid.ui.activity.ChatActivity;
 
 public class SupportAiFragment extends Fragment {
 

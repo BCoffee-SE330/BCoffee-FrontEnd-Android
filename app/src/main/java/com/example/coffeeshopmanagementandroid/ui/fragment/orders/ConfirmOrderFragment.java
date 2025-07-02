@@ -207,7 +207,7 @@ public class ConfirmOrderFragment extends Fragment {
 
         confirmOrderViewModel.getTotalPrice().observe(getViewLifecycleOwner(), price -> {
             if (price != null) {
-                totalPrice.setText("Total Price: " + price + " VND");
+                totalPrice.setText(price + " VND");
             }
         });
 
