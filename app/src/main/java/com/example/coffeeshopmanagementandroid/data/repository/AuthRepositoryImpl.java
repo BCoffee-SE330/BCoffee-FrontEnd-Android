@@ -11,8 +11,10 @@ import androidx.annotation.NonNull;
 import com.example.coffeeshopmanagementandroid.data.api.AuthService;
 import com.example.coffeeshopmanagementandroid.data.dto.BaseResponse;
 import com.example.coffeeshopmanagementandroid.data.dto.auth.request.LoginRequest;
+import com.example.coffeeshopmanagementandroid.data.dto.auth.request.RegisterRequest;
 import com.example.coffeeshopmanagementandroid.data.dto.auth.response.LoginResponse;
 import com.example.coffeeshopmanagementandroid.data.dto.auth.response.LogoutResponse;
+import com.example.coffeeshopmanagementandroid.data.dto.auth.response.RegisterResponse;
 import com.example.coffeeshopmanagementandroid.data.mapper.AuthMapper;
 import com.example.coffeeshopmanagementandroid.domain.model.auth.AuthModel;
 import com.example.coffeeshopmanagementandroid.domain.model.auth.UserModel;
@@ -175,6 +177,20 @@ public class AuthRepositoryImpl implements AuthRepository {
         } else {
             String errorMessage = "Logout failed: " + (response.errorBody() != null ? response.errorBody().string() : "Unknown error");
             Log.e("LOGOUT", errorMessage);
+            throw new Exception(errorMessage);
+        }
+    }
+
+    @Override
+    public RegisterResponse register(RegisterRequest request) throws Exception {
+        Log.d("AuthRepoImpl", "Logout called");
+        Call<RegisterResponse> call = authService.register(request);
+        Response<RegisterResponse> response = call.execute();
+        if (response.isSuccessful() && response.body() != null) {
+            return response.body();
+        } else {
+            String errorMessage = "Register failed: " + (response.errorBody() != null ? response.errorBody().string() : "Unknown error");
+            Log.e("REGISTER", errorMessage);
             throw new Exception(errorMessage);
         }
     }

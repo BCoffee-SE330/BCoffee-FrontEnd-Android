@@ -5,7 +5,7 @@
     <string name="sign_in">Sign In</string>
     <string name="dont_have_an_account">Don\'t have an account?</string>
     <string name="sign_up">Sign Up</string>
-    <string name="create_new_account">Create New Account</string>
+    <string name="create_new_account">Tạo tài khoản mới</string>
     <string name="type_your_name">Type Your Name</string>
     <string name="verify_your_account">Verify Your Account</string>
     <string name="enter_your_otp">Enter Your OTP</string>
@@ -173,4 +173,6 @@
     <string name="best_seller">Best Seller</string>
     <string name="ch_n_chi_nh_nh_giao_h_ng">Chọn chi nhánh giao hàng</string>
     <string name="branchList">Chọn chi nhánh đặt hàng</string>
+    <string name="password">Nhập mật khẩu</string>
+    <string name="birthday">Ngày sinh</string>
 </resources>
