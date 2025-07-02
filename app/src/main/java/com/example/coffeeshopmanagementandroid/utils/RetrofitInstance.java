@@ -1,7 +1,13 @@
 package com.example.coffeeshopmanagementandroid.utils;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.time.LocalDateTime;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -24,6 +30,14 @@ public class RetrofitInstance {
         this.context = context;
     }
 
+    private Gson createGson() {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter());
+        }
+        return gsonBuilder.create();
+    }
+
     private Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             OkHttpClient client = new OkHttpClient.Builder()
@@ -34,7 +48,7 @@ public class RetrofitInstance {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .client(client)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(createGson()))
                     .build();
         }
         return retrofit;
@@ -52,15 +66,15 @@ public class RetrofitInstance {
                                 .build();
                         return chain.proceed(request);
                     })
-                    .connectTimeout(60, TimeUnit.SECONDS) // Set connection timeout to 60 seconds
-                    .readTimeout(60, TimeUnit.SECONDS)    // Set read timeout to 60 seconds
-                    .writeTimeout(60, TimeUnit.SECONDS)   // Set write timeout to 60 seconds
+                    .connectTimeout(60, TimeUnit.SECONDS)
+                    .readTimeout(60, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
                     .build();
 
             ragRetrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL_RAG)
                     .client(client)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(createGson()))
                     .build();
         }
         return ragRetrofit;

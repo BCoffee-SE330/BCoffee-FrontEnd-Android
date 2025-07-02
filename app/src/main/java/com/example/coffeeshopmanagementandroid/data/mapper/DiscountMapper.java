@@ -1,17 +1,16 @@
 package com.example.coffeeshopmanagementandroid.data.mapper;
 
+import android.os.Build;
+
 import com.example.coffeeshopmanagementandroid.data.dto.discount.response.DiscountResponse;
 import com.example.coffeeshopmanagementandroid.domain.model.DiscountModel;
 
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class DiscountMapper {
-    private static final String DATE_FORMAT = "dd-MM-yyyy'T'HH:mm:ss";
     public static DiscountModel mapToDiscountModel(DiscountResponse response) {
         if (response == null) return null;
         DiscountModel model = new DiscountModel();
@@ -21,8 +20,11 @@ public class DiscountMapper {
         model.setDiscountType(response.getDiscountType());
         model.setDiscountValue(response.getDiscountValue());
         model.setDiscountCode(response.getDiscountCode());
+
+        // Handle date conversions safely
         model.setDiscountStartDate(response.getDiscountStartDate());
         model.setDiscountEndDate(response.getDiscountEndDate());
+
         model.setDiscountMaxUses(response.getDiscountMaxUsers());
         model.setDiscountUserCount(response.getDiscountUserCount());
         model.setDiscountMaxPerUser(response.getDiscountMaxPerUser());
@@ -47,13 +49,31 @@ public class DiscountMapper {
         return models;
     }
 
-    private static Timestamp parseTimestamp(String dateString) {
-        if (dateString == null) return null;
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
-            return new Timestamp(sdf.parse(dateString).getTime());
-        } catch (ParseException | NullPointerException e) {
-            return null;
+    // Similar to BranchDetailFragment's formatToVietnameseDate
+    public static String formatToVietnameseDate(LocalDateTime dateTime) {
+        if (dateTime == null) {
+            return "-";
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Get day of week in Vietnamese
+            String dayOfWeek;
+            switch (dateTime.getDayOfWeek()) {
+                case MONDAY: dayOfWeek = "Thứ Hai"; break;
+                case TUESDAY: dayOfWeek = "Thứ Ba"; break;
+                case WEDNESDAY: dayOfWeek = "Thứ Tư"; break;
+                case THURSDAY: dayOfWeek = "Thứ Năm"; break;
+                case FRIDAY: dayOfWeek = "Thứ Sáu"; break;
+                case SATURDAY: dayOfWeek = "Thứ Bảy"; break;
+                case SUNDAY: dayOfWeek = "Chủ Nhật"; break;
+                default: dayOfWeek = ""; break;
+            }
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String formattedDate = dateTime.format(formatter);
+            return dayOfWeek + ", ngày " + formattedDate;
+        }
+
+        return "-";
     }
 }
