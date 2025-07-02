@@ -67,6 +67,8 @@
             app:layout_constraintStart_toStartOf="@id/bodyLayout"
             app:layout_constraintTop_toTopOf="@id/bodyLayout"
             app:layout_constraintWidth_max="200dp">
+
+            <!-- Existing elements -->
             <ImageButton
                 android:id="@+id/customImageButton"
                 android:layout_width="72dp"
@@ -86,8 +88,32 @@
                 android:text="@string/add_picture"
                 android:textColor="@color/secondary_300"
                 android:textSize="14sp" />
-
         </LinearLayout>
+
+        <!-- Add the edit button on top of the layout -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/editAvatarButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="Chỉnh sửa ảnh"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            app:backgroundTint="@color/primary_500"
+            app:cornerRadius="20dp"
+            app:icon="@drawable/add_icon"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@id/addPictureLayout"
+            app:layout_constraintEnd_toEndOf="@id/addPictureLayout"
+            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/addPictureLayout"
+            app:layout_constraintTop_toTopOf="@id/addPictureLayout" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profileLayout"

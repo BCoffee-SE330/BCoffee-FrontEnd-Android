@@ -75,9 +75,8 @@ public class AddressFragment extends BaseOtherFragment {
             TextView tvAddress = recentlyAddress.findViewById(R.id.tvRecentlyAddress);
             ImageView iconEditAddress = recentlyAddress.findViewById(R.id.iconEditRecentlyAddress);
 
-            // Dummy data - chỗ này sử dụng API lấy Address của đơn gần nhất
+            // Chỗ này sử dụng API lấy Address của đơn gần nhất
             List<AddressModel> addresses = new ArrayList<>();
-            addresses.add(new AddressModel("addr_001", "Hehehe & Tee Express, 82 Đ. Vành Đai", "Đông Hoà, Dĩ An", "Bình Dương", true));
             AddressModel recentAddress;
             recentAddress = addresses.get(0);
 

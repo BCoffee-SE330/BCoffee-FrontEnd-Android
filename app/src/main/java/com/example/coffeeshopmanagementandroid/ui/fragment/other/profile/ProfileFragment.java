@@ -24,6 +24,7 @@ import com.example.coffeeshopmanagementandroid.ui.viewmodel.UserViewModel;
 import com.example.coffeeshopmanagementandroid.utils.NavigationUtils;
 import com.example.coffeeshopmanagementandroid.utils.enums.EditMode;
 import com.example.coffeeshopmanagementandroid.utils.enums.Gender;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -32,6 +33,19 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import com.example.coffeeshopmanagementandroid.data.dto.user.request.UpdateUserRequest;
 
 public class ProfileFragment extends BaseOtherFragment {
     private UserViewModel userViewModel;
@@ -45,9 +59,14 @@ public class ProfileFragment extends BaseOtherFragment {
     private AutoCompleteTextView autoCompleteGender;
     private TextInputLayout dateOfBirthInputLayout;
     private Button btnUpdateInformation;
+    private MaterialButton editAvatarButton;
     private Calendar calendar;
 
     private String initialLastName, initialFirstName, initialGender, initialDateOfBirth, initialPhone, initialEmail;
+
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private Uri selectedImageUri;
+    private boolean hasAvatarChanged = false;
 
     @Override
     protected int getLayoutResId() {
@@ -71,6 +90,7 @@ public class ProfileFragment extends BaseOtherFragment {
         editTextPhoneNumber = view.findViewById(R.id.phoneNumberEditText);
         editTextEmail = view.findViewById(R.id.emailEditText);
         btnUpdateInformation = view.findViewById(R.id.btnUpdateInformation);
+        editAvatarButton = view.findViewById(R.id.editAvatarButton);
 
         calendar = Calendar.getInstance();
 
@@ -78,29 +98,70 @@ public class ProfileFragment extends BaseOtherFragment {
 
         btnUpdateInformation.setOnClickListener(v -> setUpdateButtonClickListener());
         customImageButton.setOnClickListener(v -> setUpBtnUpdateAvatar());
+        editAvatarButton.setOnClickListener(v -> {
+            if (currentMode == EditMode.EDIT) {
+                showImageOptions();
+            }
+        });
+
+        customImageButton.setOnClickListener(v -> {
+            if (currentMode == EditMode.EDIT) {
+                showImageOptions();
+            }
+        });
+
+        fetchAndObserverUserLive();
+        updateUIForMode(EditMode.DONE);
 
         fetchAndObserverUserLive();
         updateUIForMode(EditMode.DONE);
     }
 
     private void setupGenderPicker() {
-        Gender[] genderEnums = Gender.values();
-        String[] genders = new String[genderEnums.length];
+        // Define fixed gender options
+        final String[] allGenders = {"Nam", "Nữ", "Khác"};
 
-        for (int i = 0; i < genderEnums.length; i++) {
-            genders[i] = genderEnums[i].getGender();
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+        // Create custom adapter that filters out the selected gender
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 requireContext(),
                 android.R.layout.simple_dropdown_item_1line,
-                genders
-        );
+                allGenders
+        ) {
+            @Override
+            public int getCount() {
+                return allGenders.length - (autoCompleteGender.getText().toString().isEmpty() ? 0 : 1);
+            }
+
+            @Override
+            public String getItem(int position) {
+                String currentSelection = autoCompleteGender.getText().toString();
+                int realPosition = position;
+
+                for (int i = 0; i <= position; i++) {
+                    if (allGenders[i].equals(currentSelection)) {
+                        realPosition++;
+                    }
+                }
+
+                if (realPosition >= allGenders.length) {
+                    return allGenders[position];
+                }
+
+                return allGenders[realPosition];
+            }
+        };
 
         autoCompleteGender.setAdapter(adapter);
-        autoCompleteGender.setThreshold(0); // Hiển thị dropdown ngay khi click
-        autoCompleteGender.setOnClickListener(v -> autoCompleteGender.showDropDown());
+        autoCompleteGender.setThreshold(0);
+        autoCompleteGender.setOnClickListener(v -> {
+            ((ArrayAdapter<?>) autoCompleteGender.getAdapter()).notifyDataSetChanged();
+            autoCompleteGender.showDropDown();
+        });
         autoCompleteGender.setKeyListener(null);
+
+        autoCompleteGender.setOnItemClickListener((parent, view, position, id) -> {
+            adapter.notifyDataSetChanged();
+        });
     }
 
     private void showDatePickerDialog() {
@@ -138,7 +199,149 @@ public class ProfileFragment extends BaseOtherFragment {
     }
 
     private void setUpBtnUpdateAvatar() {
-        // Bỏ qua logic liên quan đến ảnh theo yêu cầu
+        editAvatarButton.setOnClickListener(v -> {
+            if (currentMode == EditMode.EDIT) {
+                showImageOptions();
+            }
+        });
+        customImageButton.setOnClickListener(v -> {
+            if (currentMode == EditMode.EDIT) {
+                showImageOptions();
+            }
+        });
+    }
+
+
+    private void openGallery() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK
+                && data != null && data.getData() != null) {
+            selectedImageUri = data.getData();
+            loadUserAvatar(selectedImageUri.toString());
+            hasAvatarChanged = true;
+        }
+    }
+
+    private void confirmDeleteAvatar() {
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Xóa ảnh đại diện")
+                .setMessage("Bạn có chắc muốn xóa ảnh đại diện?")
+                .setPositiveButton("Xác nhận", (dialog, which) -> {
+                    userViewModel.deleteAvatar();
+                })
+                .setNegativeButton("Hủy", null)
+                .show();
+    }
+
+    private void updateUserInformation() {
+        String firstName = editTextFirstName.getText().toString().trim();
+        String lastName = editTextLastName.getText().toString().trim();
+        String genderText = autoCompleteGender.getText().toString().trim();
+        String phone = editTextPhoneNumber.getText().toString().trim();
+        String email = editTextEmail.getText().toString().trim();
+        String dob = editTextDateOfBirth.getText().toString().trim();
+
+        if (!isValidEmail(email)) {
+            Toast.makeText(requireContext(), "Email không hợp lệ", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Create UpdateUserRequest object
+        UpdateUserRequest updateRequest = new UpdateUserRequest();
+        updateRequest.setName(firstName);
+        updateRequest.setLastName(lastName);
+        updateRequest.setEmail(email);
+        updateRequest.setPhoneNumber(phone);
+        updateRequest.setBirthDate(dob);
+        updateRequest.setGender(genderText);
+
+        // Update user information
+        userViewModel.updateUserInfo(updateRequest);
+
+        // If avatar was changed, upload the new image
+        if (hasAvatarChanged && selectedImageUri != null) {
+            uploadSelectedImage();
+        }
+
+        currentMode = EditMode.DONE;
+        updateUIForMode(currentMode);
+    }
+
+    private void uploadSelectedImage() {
+        try {
+            File file = getFileFromUri(selectedImageUri);
+            userViewModel.uploadAvatar(file);
+        } catch (IOException e) {
+            Toast.makeText(requireContext(), "Error preparing image: " + e.getMessage(),
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private File getFileFromUri(Uri uri) throws IOException {
+        String fileName = getFileName(uri);
+        File file = new File(requireContext().getCacheDir(), fileName);
+        InputStream input = requireContext().getContentResolver().openInputStream(uri);
+        FileOutputStream output = new FileOutputStream(file);
+
+        byte[] buffer = new byte[4 * 1024];
+        int read;
+        while ((read = input.read(buffer)) != -1) {
+            output.write(buffer, 0, read);
+        }
+
+        output.flush();
+        if (input != null) input.close();
+        output.close();
+
+        return file;
+    }
+
+    private String getFileName(Uri uri) {
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            try (Cursor cursor = requireContext().getContentResolver().query(uri, null, null, null, null)) {
+                if (cursor != null && cursor.moveToFirst()) {
+                    int index = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                    if (index >= 0) {
+                        result = cursor.getString(index);
+                    }
+                }
+            }
+        }
+        if (result == null) {
+            result = uri.getPath();
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
+        }
+        return result;
+    }
+
+
+    private void showImageOptions() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Ảnh đại diện");
+        String[] options = {"Chọn ảnh từ thư mục", "Xóa ảnh đại diện"};
+
+        builder.setItems(options, (dialog, which) -> {
+            if (which == 0) {
+                openGallery();
+            } else {
+                confirmDeleteAvatar();
+            }
+        });
+
+        builder.show();
     }
 
     private void setUpdateButtonClickListener() {
@@ -214,7 +417,14 @@ public class ProfileFragment extends BaseOtherFragment {
         userViewModel.getIsLoading().observe(getViewLifecycleOwner(), isLoading -> {});
         userViewModel.getErrorLiveData().observe(getViewLifecycleOwner(), error -> {
             if (error != null) {
-                Toast.makeText(requireContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        userViewModel.getAvatarResponseLiveData().observe(getViewLifecycleOwner(), urlMap -> {
+            if (urlMap != null && urlMap.containsKey("url")) {
+                String avatarUrl = urlMap.get("url");
+                loadUserAvatar(avatarUrl);
+                hasAvatarChanged = false;
             }
         });
     }
@@ -226,33 +436,6 @@ public class ProfileFragment extends BaseOtherFragment {
         editTextPhoneNumber.setText(initialPhone);
         editTextEmail.setText(initialEmail);
         editTextDateOfBirth.setText(initialDateOfBirth);
-    }
-
-    private void updateUserInformation() {
-        String firstName = editTextFirstName.getText().toString().trim();
-        String lastName = editTextLastName.getText().toString().trim();
-        String genderText = autoCompleteGender.getText().toString().trim();
-        String phone = editTextPhoneNumber.getText().toString().trim();
-        String email = editTextEmail.getText().toString().trim();
-        String dob = editTextDateOfBirth.getText().toString().trim();
-
-        // Kiểm tra email hợp lệ
-        if (!isValidEmail(email)) {
-            Toast.makeText(requireContext(), "Email không hợp lệ", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Gender gender = null;
-        for (Gender g : Gender.values()) {
-            if (g.getGender().equals(genderText)) {
-                gender = g;
-                break;
-            }
-        }
-
-        // userViewModel.updateUserInfo(firstName, lastName, gender != null ? gender.name() : null, phone, email, dob);
-        currentMode = EditMode.DONE;
-        updateUIForMode(currentMode);
     }
 
     private void loadUserAvatar(String avatarUrl) {

@@ -5,8 +5,12 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.coffeeshopmanagementandroid.data.dto.user.request.UpdateUserRequest;
 import com.example.coffeeshopmanagementandroid.domain.model.UserModel;
 import com.example.coffeeshopmanagementandroid.domain.usecase.UserUseCase;
+
+import java.io.File;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -18,6 +22,7 @@ public class UserViewModel extends ViewModel {
     private final MutableLiveData<UserModel> userLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> errorLiveData = new MutableLiveData<>();
     private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
+    private final MutableLiveData<Map<String, String>> avatarResponseLiveData = new MutableLiveData<>();
 
     @Inject
     public UserViewModel(UserUseCase userUseCase) {
@@ -32,7 +37,6 @@ public class UserViewModel extends ViewModel {
         userLiveData.postValue(user);
     }
 
-
     public MutableLiveData<String> getErrorLiveData() {
         return errorLiveData;
     }
@@ -45,9 +49,12 @@ public class UserViewModel extends ViewModel {
         return isLoading;
     }
 
-
     public void setIsLoading(Boolean loading) {
         isLoading.postValue(loading);
+    }
+
+    public MutableLiveData<Map<String, String>> getAvatarResponseLiveData() {
+        return avatarResponseLiveData;
     }
 
     public void fetchInformationCustomer() {
@@ -61,6 +68,51 @@ public class UserViewModel extends ViewModel {
             } catch (Exception e) {
                 setErrorLiveData(e.getMessage());
                 Log.e("UserViewModel", "Fetch information failed: " + e.getMessage(), e);
+            } finally {
+                setIsLoading(false);
+            }
+        }).start();
+    }
+
+    public void uploadAvatar(File imageFile) {
+        setIsLoading(true);
+        new Thread(() -> {
+            try {
+                Map<String, String> result = userUseCase.uploadAvatar(imageFile);
+                avatarResponseLiveData.postValue(result);
+            } catch (Exception e) {
+                setErrorLiveData(e.getMessage());
+                Log.e("UserViewModel", "Upload avatar failed: " + e.getMessage(), e);
+            } finally {
+                setIsLoading(false);
+            }
+        }).start();
+    }
+
+    public void deleteAvatar() {
+        setIsLoading(true);
+        new Thread(() -> {
+            try {
+                Map<String, String> result = userUseCase.deleteAvatar();
+                avatarResponseLiveData.postValue(result);
+            } catch (Exception e) {
+                setErrorLiveData(e.getMessage());
+                Log.e("UserViewModel", "Delete avatar failed: " + e.getMessage(), e);
+            } finally {
+                setIsLoading(false);
+            }
+        }).start();
+    }
+
+    public void updateUserInfo(UpdateUserRequest updateUserRequest) {
+        setIsLoading(true);
+        new Thread(() -> {
+            try {
+                UserModel result = userUseCase.updateUser(updateUserRequest);
+                setUserResult(result);
+            } catch (Exception e) {
+                setErrorLiveData(e.getMessage());
+                Log.e("UserViewModel", "Update user failed: " + e.getMessage(), e);
             } finally {
                 setIsLoading(false);
             }
