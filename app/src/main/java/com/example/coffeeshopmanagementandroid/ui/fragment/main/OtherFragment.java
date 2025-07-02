@@ -13,13 +13,17 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.coffeeshopmanagementandroid.R;
 import com.example.coffeeshopmanagementandroid.ui.activity.AuthActivity;
 import com.example.coffeeshopmanagementandroid.ui.component.OtherButton;
@@ -161,12 +165,25 @@ public class OtherFragment extends Fragment {
     private void observeUserViewModel(View view) {
         TextView tvUsername = view.findViewById(R.id.tvUsername);
         TextView tvRank = view.findViewById(R.id.tvRank);
+        ImageView igAvatar = view.findViewById(R.id.igAvatar);
 
         userViewModel.getUserLiveData().observe(getViewLifecycleOwner(), user -> {
             if (user != null) {
                 String fullName = user.getFullName();
                 tvUsername.setText(fullName);
                 tvRank.setText("Khách hàng");
+
+                // Load user avatar
+                String avatarUrl = user.getUserAvatar();
+                if (avatarUrl != null && !avatarUrl.isEmpty()) {
+                    Glide.with(requireContext())
+                            .load(avatarUrl)
+                            .placeholder(R.drawable.placeholder_image)
+                            .error(R.drawable.placeholder_image)
+                            .into(igAvatar);
+                } else {
+                    igAvatar.setImageResource(R.drawable.placeholder_image);
+                }
             }
         });
 
@@ -176,6 +193,8 @@ public class OtherFragment extends Fragment {
             }
         });
     }
+
+
 
     private void handleLogout() {
 //        logoutViewModel.logout();
